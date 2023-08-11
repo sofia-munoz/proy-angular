@@ -1,0 +1,33 @@
+<div class="container-fluid">
+   <div class="container">
+      <div class="row">
+         <div class="col-12 col-lg-6 m-auto">
+            <div class="contacto-container">
+               <div class="contacto-head">
+                  <h2><strong>/</strong>CONTACTANOS</h2>
+                  <p>¿Te gustaría asesorarte con un especialista? Estamos conectados para ayudarte. Podes visitarnos en
+                     nuestras oficinas o comunicarte telefónicamente o vía email:
+                  </p>
+               </div>
+               <form #contactoform="ngForm" class="contacto-form">
+                  <div class="mb-3">
+                     <label for="nombreCompleto">Nombre Completo</label>
+                     <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto" required>
+                  </div>
+                  <div class="mb-3">
+                     <label for="email">Correo Electrónico</label>
+                     <input type="email" class="form-control" id="email" name="email" required>
+                  </div>
+                  <div class="mb-4">
+                     <label for="telefono">Teléfono</label>
+                     <input type="text" class="form-control" id="telefono" name="telefono" required>
+                  </div>
+                  <div class="mt-3 mb-3 btn-asesor-container">
+                     <button [disabled]="contactoform.invalid" type="submit" class="btn btn-dark btn-asesor">Quiero asesorarme con un especialista</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="container-fluid">
+    <div class="container">
+        <p class="fs-3">GESTION DE INSUMOS</p>
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-6">
+                <form #insumoForm="ngForm">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre (*)</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="insumo.nombre"
+                            required #nombre="ngModel" />
+                    </div>
+                    <div *ngIf="(nombre.invalid && (nombre.dirty || nombre.touched))" class="alert alert-danger">
+                        <div *ngIf="nombre.errors?.['required']">
+                            Nombre es requerido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripcion (*)</label>
+                        <input type="text" class="form-control" id="descripcion" name="descripcion"
+                            [(ngModel)]="insumo.descripcion" required #descripcion="ngModel" />
+                    </div>
+                    <div *ngIf="(descripcion.invalid && (descripcion.dirty || descripcion.touched))"
+                        class="alert alert-danger">
+
+                        <div *ngIf="descripcion.errors?.['required']">
+                            Descripcion es requerido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio (*)</label>
+                        <input type="number" class="form-control" id="precio" name="precio"
+                            [(ngModel)]="insumo.precio" required #precio="ngModel" />
+                    </div>
+
+                    <div *ngIf="(precio.invalid && (precio.dirty || precio.touched)) || (precio.valid && precio.value<=0)"
+                        class="alert alert-danger">
+
+                        <div *ngIf="precio.errors?.['required']">
+                            Precio es requerido.
+                        </div>
+                        <div *ngIf="precio.value<=0">
+                            Precio debe ser mayor a 0.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="img" class="form-label">Imagen (*)</label>
+                        <input type="text" class="form-control" id="img" name="img" [(ngModel)]="insumo.imagen" required
+                            #imagen="ngModel" />
+                    </div>
+                    <div *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)" class="alert alert-danger">
+
+                        <div *ngIf="imagen.errors?.['required']">
+                            Imagen es requerido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoria" class="form-label">Categoria (*)</label>
+                        <select class="form-select" name="categoria" id='categoria'
+                            [(ngModel)]="insumo.categoria" required #categoria="ngModel">
+                            <option value="intermedio">Comestible</option>
+                            <option value="principiante">Bebida</option>
+                            <option value="avanzado">Ropa</option>
+                            <option value="avanzado">Equipamiento </option>
+                        </select>
+                    </div>
+                    <div *ngIf="(categoria.invalid && (categoria.dirty || categoria.touched))" class="alert alert-danger">
+                        <div *ngIf="categoria.errors?.['required']">
+                            Categoria es requerido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label">Cantidad (*)</label>
+                        <input type="number" class="form-control" id="cantidad" name="cantidad"
+                            [(ngModel)]="insumo.cantidad" required #cantidad="ngModel" />
+                    </div>
+                    <div *ngIf="cantidad.invalid && (cantidad.dirty || cantidad.touched)" class="alert alert-danger">
+
+                        <div *ngIf="cantidad.errors?.['required']">
+                            Cantidad es requerido.
+                        </div>
+                        <div *ngIf="cantidad.value<0">
+                            Cantidad debe ser mayor o igual a 0.
+                        </div>
+                    </div>
+
+
+                    <button [disabled]="!insumoForm.form.valid" class="btn btn-primary" *ngIf="action=='new'"
+                        (click)="guardarInsumo()">Registrar</button>
+                    <button class="btn btn-warning" *ngIf="action=='update'"
+                        (click)="modificarInsumo()">Modificar</button>
+                    <button class="btn btn-primary boton" (click)="volverLista()">Volver</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

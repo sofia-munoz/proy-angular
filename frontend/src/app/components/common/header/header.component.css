@@ -1,0 +1,12 @@
+.logo {
+    margin: 0rem 2rem;
+}
+.nav-link{
+    font-size: 1.1rem;
+}
+.nav-link:hover {
+    background-color: rgb(83, 82, 82);
+    text-decoration: underline;
+    border-radius: 10px;
+    opacity: 50%;
+}

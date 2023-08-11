@@ -1,0 +1,27 @@
+button {
+    margin-bottom: 3rem;
+}
+
+.image-container {
+    max-height: 30rem;
+
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 992px) {
+    select.form-select option {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    select.form-select option {
+        font-size: 10px;
+    }
+}

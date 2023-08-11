@@ -1,0 +1,24 @@
+<div class="bg-dark">
+  <h1 class="text-light text-center">Control de peso</h1>
+  <button class="btn btn-primary btn-lg editar-datos mb-3 m-2" (click)="iraPerfil()"> Volver </button>
+  <div class="row pb-4 pt-4 m-0">
+    <div class="col-md-6">
+        <h3 class="text-light  text-center"> Calcular IMC </h3>
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label text-light">Ingrese su Altura</label>
+            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ej: 173" name="altura" [(ngModel)]="altura">
+          </div>
+          <button type="submit" class="btn btn-light" (click)="calcularIMC()">Calcular</button>
+        </form>
+      </div>
+    <div class="col-md-6">
+     <h4 class="text-light mb-5 mt-4">Peso inicial: {{alumno.pesoInicial}} </h4>
+     <h4 class="text-light mb-5">Peso actual: {{alumno.pesoActual}} </h4>
+    </div> 
+    
+  </div>
+  <h2 class="text-light text-center">Tu IMC es: {{IMC}}</h2>
+  <h2 class="text-light text-center pb-5">Estado: {{estado}}</h2>
+
+</div>

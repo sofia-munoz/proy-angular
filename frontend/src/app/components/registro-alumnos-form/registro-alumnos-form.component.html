@@ -1,0 +1,203 @@
+<div class="container-fluid">
+    <div class="container">
+        <p class="fs-3">GESTION DE ALUMNOS</p>
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-6">
+                <form #alumnoForm="ngForm">
+                    <div class="mb-3">
+                        <label for="nombres" class="form-label">Nombres (*)</label>
+                        <input type="text" class="form-control" id="nombres" name="nombres" [(ngModel)]="alumno.nombres"
+                            required #nombres="ngModel" />
+                    </div>
+                    <div *ngIf="(nombres.invalid && (nombres.dirty || nombres.touched))" class="alert alert-danger">
+                        <div *ngIf="nombres.errors?.['required']">
+                            Nombres es requerido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellidos" class="form-label">Apellidos (*)</label>
+                        <input type="text" class="form-control" id="apellidos" name="apellidos"
+                            [(ngModel)]="alumno.apellidos" required #apellidos="ngModel" />
+                    </div>
+                    <div *ngIf="(apellidos.invalid && (apellidos.dirty || apellidos.touched))"
+                        class="alert alert-danger">
+
+                        <div *ngIf="apellidos.errors?.['required']">
+                            Apellidos es requerido.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dni" class="form-label">Dni (*)</label>
+                        <input type="text" class="form-control" id="dni" name="dni" [(ngModel)]="alumno.dni" required
+                            #dni="ngModel" minlength="8" (blur)="verificarDni()"
+                            [ngClass]="{'input-green': dniVerificado}" (ngModelChange)="dniVerificado=false; dniConError=false"
+                            [ngClass]="{'input-red': dniConError}"/>
+                    </div>
+                    <div *ngIf="(dni.invalid && (dni.dirty || dni.touched))" class="alert alert-danger">
+
+                        <div *ngIf="dni.errors?.['required']">
+                            Dni es requerido.
+                        </div>
+
+                        <div *ngIf="dni.errors?.['minlength']">
+                            Dni debe tener al menos 8 caracteres.
+                        </div>
+                    </div>
+                    <div *ngIf="(dniConError)" class="alert alert-danger">
+                        <div>
+                            El Alumno ya existe.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email (*)</label>
+                        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="alumno.email"
+                            required #email="ngModel" />
+                    </div>
+                    <div *ngIf="(email.invalid && (email.dirty || email.touched))" class="alert alert-danger">
+
+                        <div *ngIf="email.errors?.['required']">
+                            Email es requerido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fechaInscripcion" class="form-label">Fecha de Inscripcion (*)</label>
+                        <input type="date" class="form-control" id="fechaInscripcion" name="fechaInscripcion"
+                            [(ngModel)]="alumno.fechaInscripcion" required #fechaInscripcion="ngModel" />
+                    </div>
+                    <div *ngIf="(fechaInscripcion.invalid && (fechaInscripcion.dirty || fechaInscripcion.touched))"
+                        class="alert alert-danger">
+
+                        <div *ngIf="fechaInscripcion.errors?.['required']">
+                            Fecha de Inscripcion es requerido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="usuario" class="form-label">Usuario (*)</label>
+                        <input type="text" class="form-control" id="usuario" name="usuario" 
+                            [(ngModel)]="alumno.user.username" required #usuario="ngModel" (blur)="verificarUser()"
+                            [ngClass]="{'input-green': usuarioVerificado}" (ngModelChange)="usuarioVerificado=false; usuarioConError=false"
+                            [ngClass]="{'input-red': usuarioConError}"/>
+                    </div>
+                    
+                    <div *ngIf="(usuario.invalid && (usuario.dirty || usuario.touched))" class="alert alert-danger">
+
+                        <div *ngIf="usuario.errors?.['required']">
+                            Usuario es requerido.
+                        </div>
+                    </div>
+                    <div *ngIf="(usuarioConError)" class="alert alert-danger">
+                        <div>
+                            El usuario ya existe.
+                        </div>
+                    </div>
+                    <div class="loader-overlay" *ngIf="mostrarLoader">
+                        <div class="loader"><img *ngIf="mostrarLoader" src="../../../assets/animate/svg-loaders/ball-triangle.svg" alt="" class="loader"></div>
+                      </div>
+                      
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña (*)</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                            [(ngModel)]="alumno.user.password" required #password="ngModel" minlength="6"/>
+                    </div>
+                    <div *ngIf="(password.invalid && (password.dirty || password.touched))" class="alert alert-danger">
+
+                        <div *ngIf="password.errors?.['required']">
+                            Contraseña es requerido.
+                        </div>
+
+                        <div *ngIf="password.errors?.['minlength']">
+                            Contraseña debe tener al menos 6 caracteres.
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="rol" class="form-label">Rol</label>
+                        <input type="text" class="form-control" id="rol" name="rol" disabled=""
+                            [(ngModel)]="alumno.user.rol" />
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="destacado" name="destacado"
+                            [(ngModel)]="enviarCred">
+                        <label class="form-check-label" for="destacado">Enviar Credenciales</label>
+                    </div>
+                    
+                    <!--CAMPOS OPTATIVOS-->
+                    <!--Toogle-->
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                            unchecked (click)="mostrarCamposOpt()">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Mostrar campos optativos</label>
+                    </div>
+
+
+                    <div class="mb-3" *ngIf="mostrarCampos">
+                        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento"
+                            [(ngModel)]="alumno.fechaNacimiento" #fechaNacimiento="ngModel" />
+                    </div>
+                    <div class="mb-3" *ngIf="mostrarCampos">
+                        <label for="celular" class="form-label">Celular</label>
+                        <input type="text" class="form-control" id="celular" name="celular"
+                            [(ngModel)]="alumno.celular" />
+                    </div>
+                    <div class="mb-3" *ngIf="mostrarCampos">
+                        <label for="domicilio" class="form-label">Domicilio</label>
+                        <input type="text" class="form-control" id="domicilio" name="domicilio"
+                            [(ngModel)]="alumno.domicilio" />
+                    </div>
+
+                    <div class="mb-3" *ngIf="mostrarCampos">
+                        <label for="foto" class="form-label">Foto de Perfil</label>
+                        <input type="text" class="form-control" id="foto" name="foto" [(ngModel)]="alumno.fotoPerfil" />
+                    </div>
+                    <div *ngIf="mostrarCampos">
+                        <div class="mb-3">
+                            <label for="pesoInicial" class="form-label">Peso incial</label>
+                            <input type="number" class="form-control" id="pesoInicial" name="pesoInicial"
+                                [(ngModel)]="alumno.pesoInicial" #pesoInicial="ngModel" />
+                        </div>
+                        <div *ngIf="pesoInicial.value !== '' && pesoInicial.value <= 0 && pesoInicial.value != null"
+                            class="alert alert-danger">
+                            Peso inicial debe ser mayor a 0.
+                        </div>
+                    </div>
+                    <div *ngIf="mostrarCampos">
+                        <div class="mb-3">
+                            <label for="pesoActual" class="form-label">Peso actual</label>
+                            <input type="number" class="form-control" id="pesoActual" name="pesoActual"
+                                [(ngModel)]="alumno.pesoActual" #pesoActual="ngModel" />
+                        </div>
+                        <div *ngIf="pesoActual.value !== '' && pesoActual.value <= 0 && pesoActual.value != null"
+                            class="alert alert-danger">
+                            Peso actual debe ser mayor a 0.
+                        </div>
+                    </div>
+                    <div class="mb-3" *ngIf="mostrarCampos">
+                        <label for="nivelFisico" class="form-label">Nivel Fisico</label>
+                        <select class="form-select" name="nivelFisico" id='nivelFisico'
+                            [(ngModel)]="alumno.nivelFisico">
+                            <option value="principiante">Principiante</option>
+                            <option value="intermedio">Intermedio</option>
+                            <option value="avanzado">Avanzado</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3" *ngIf="mostrarCampos">
+                        <label for="plan" class="form-label">Plan</label>
+                        <select class="form-select" name="plan" id='plan' [(ngModel)]="alumno.plan">
+                            <option [ngValue]="p" *ngFor="let p of planes">{{p.nombre}}</option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <button [disabled]="!alumnoForm.form.valid || !usuarioVerificado" class="btn btn-primary" *ngIf="action=='new'"
+                        (click)="guardarAlumno()">Registrar</button>
+                    <button class="btn btn-warning" *ngIf="action=='update'"
+                        (click)="modificarAlumno()">Modificar</button>
+                    <button class="btn btn-primary boton" (click)="volverLista()">Volver</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

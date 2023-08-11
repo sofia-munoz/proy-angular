@@ -1,0 +1,59 @@
+<div class="container">
+    <p class="fs-3">TOTAL DE PLANES</p>
+    <button type="button" class="btn btn-primary boton" (click)="agregarPlan()">Agregar</button>
+    <button id="btnVentas" type="button" class="btn btn-primary" (click)="irHistorico()">Historico</button>
+    <div class="mb-3 form-check" style="margin-left: 1rem; margin-top: 2rem;">
+        <input type="checkbox" class="form-check-input" id="activos" name="activos"
+            [(ngModel)]="activos" (change)="filtrarPlanes()">
+        <label class="form-check-label" for="activos">Activos</label>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="d-none d-md-table-cell">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col" class="d-none d-md-table-cell">Descripcion</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Dias Disponibles</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of planes, let i = index">
+                <th scope="row" class="d-none d-md-table-cell">{{i+1}}</th>
+                <td>{{p.nombre}}</td>
+                <td class="d-none d-md-table-cell">{{p.descripcion}}</td>
+                <td>{{"$ " + p.precio}}</td>
+                <td>{{p.diasDisponibles }}</td>
+                <td>{{p.estado}}</td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-sm action"
+                        (click)="modificarPlan(p)">Modificar</button>
+                    <button type="button" class="btn btn-danger btn-sm action" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" (click)="planAEliminar = p">Eliminar</button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminación de Plan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Seguro que desea eliminar el plan {{planAEliminar.nombre}}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                    (click)="eliminarPlan(planAEliminar._id)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

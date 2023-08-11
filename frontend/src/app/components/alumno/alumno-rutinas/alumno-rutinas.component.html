@@ -1,0 +1,70 @@
+<div class="container">
+  <h1 class="text-center mb-4">Informacion de tus Rutinas Asignadas</h1>
+  <div class="btn-group d-flex flex-column mb-3">
+    <p class="total-rutinas">Tenes un total de {{rutinasAsignadas}} rutina/s que te fueron asignada/s!</p>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Objetivo</th>
+        <th scope="col">Tipo de Entrenamiento</th>
+        <th scope="col">Entrenador a cargo</th>
+        <th scope="col">Total de ejercicios</th>
+        <th scope="col">Informacion</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let rutina of rutinas">
+        <td>{{ rutina.nombre }}</td>
+        <td>{{ rutina.descripcion }}</td>
+        <td>{{ rutina.objetivo }}</td>
+        <td>{{ rutina.tipoEntrenamiento }}</td>
+        <td>{{ rutina.entrenador.nombres }} {{ rutina.entrenador.apellidos }}</td>
+        <td>{{ rutina.ejercicios.length}}</td>
+
+        <td>
+          <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                  (click)="verInformacionRutina(rutina)">
+            Ver más
+          </button>
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1"
+               aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">INFORMACION DETALLA DE LOS EJERCICIOS</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                  <div *ngFor="let ejercicio of ejercicios; let i = index">
+                    <p class="fw-bolder bg-info-subtle">#{{ i + 1 }} - {{ ejercicio.nombre }}
+                      - {{ ejercicio.nivelRequerido }} </p>
+                    <span>Descripción del ejercicio: {{ ejercicio.descripcion }}</span>
+                    <p>Músculo trabajado: {{ ejercicio.musculoTrabajado }}</p>
+                    <p>Repeticiones: {{ ejercicio.repeticiones }} y Series: {{ ejercicio.series }}</p>
+                    <p>Video ayuda: <a [href]="ejercicio.video" target="_blank">{{ ejercicio.video }}</a></p>
+                  </div>
+                </div>
+
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                    OK
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,0 +1,64 @@
+<div class="container">
+<!--  INFORMACION GENERAL-->
+  <h1 class="text-center mb-4">Asistencia en el Gimnasio</h1>
+  <h1 class="text-start mb-4">Información</h1>
+
+  <!--  MENU FILTROS-->
+  <button type="button" class="btn btn-primary" (click)="mostrarFiltros()">
+    Agregar Filtro
+  </button>
+
+  <div class="row row-cols-3" *ngIf="mostrarFiltrosFlag">
+    <div class="col">
+      <h2 class="text">Filtrar por el día</h2>
+      <button type="button" class="btn btn-primary" (click)="seleccionarTodosDias()">Todos</button>
+      <button *ngFor="let dia of diasSemana" type="button" class="btn btn-outline-primary"
+              (click)="toggleSeleccionDia(dia)">{{dia}}</button>
+    </div>
+    <div class="col">
+      <h2 class="text">Filtrar por el mes</h2>
+      <button type="button" class="btn btn-primary" (click)="seleccionarTodosMeses()">Todos</button>
+      <button *ngFor="let mes of meses" type="button" class="btn btn-outline-primary"
+              (click)="toggleSeleccionMes(mes)">{{mes}}</button>
+    </div>
+    <div class="col">
+      <div *ngIf="rutinas.length === 0" class="alert alert-warning">
+        Tenes el filtro del Día: {{dia}} seleccionado.
+      </div>
+      <div *ngIf="rutinas.length === 0" class="alert alert-warning">
+        Tenes el filtro del Mes: {{mes}} seleccionado.
+      </div>
+    </div>
+
+  </div>
+
+  <!--  VERIFICAR FILTROS-->
+  <div *ngIf="rutinas.length === 0" class="alert alert-info m-3">
+    No se encontraron rutinas con asistencias.
+  </div>
+
+  <!--  INFORMACION DETALLADA-->
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Fecha</th>
+        <th scope="col">Hora de entrada</th>
+        <th scope="col">Rutina realizada</th>
+        <th scope="col">Entrenamiento realizado</th>
+        <th scope="col">Entrenador a cargo</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let asistencia of rutinas">
+        <td>{{ asistencia.fechaCreacion | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ asistencia.fechaCreacion | date: 'hh:mm:ss a' }}</td>
+        <td>{{ asistencia.nombre }}</td>
+        <td>{{ asistencia.tipoEntrenamiento }}</td>
+        <td>{{ asistencia.entrenador.nombres }} {{ asistencia.entrenador.apellidos }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

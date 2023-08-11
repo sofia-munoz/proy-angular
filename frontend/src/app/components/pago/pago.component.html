@@ -1,0 +1,108 @@
+<div class="container-fluid">
+    <div class="container">
+        <p class="fs-3">PAGO DE PLANES</p>
+        <div class="row">
+            <div class="col-sm-12 col-md-9 col-lg-6">
+                <form #pagoForm="ngForm">
+                    <div class="mb-3">
+                        <label for="alumno" class="form-label">Alumno (*)</label>
+                        <select class="form-select" name="alumno" id='alumno' [(ngModel)]="pago.alumno" required
+                            #alumno="ngModel">
+                            <option [ngValue]="a" *ngFor="let a of alumnos">{{a.apellidos}}, {{a.nombres}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="(alumno.invalid && (alumno.dirty || alumno.touched))" class="alert alert-danger">
+                        <div *ngIf="alumno.errors?.['required']">
+                            Alumno es requerido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="plan" class="form-label">Plan (*)</label>
+                        <select class="form-select" name="plan" id='plan' [(ngModel)]="pago.plan" required
+                            #plan="ngModel" (change)="selectPrecio()">
+                            <option [ngValue]="p" *ngFor="let p of planes">{{p.nombre}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="(plan.invalid && (plan.dirty || plan.touched))" class="alert alert-danger">
+                        <div *ngIf="plan.errors?.['required']">
+                            Plan es requerido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <div class="input-group">
+                          <span class="input-group-text">$</span>
+                          <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="pago.total" #precio="ngModel"
+                            disabled="" />
+                        </div>
+                      </div>
+                    <div class="mb-3">
+                        <label for="fechaPago" class="form-label">Fecha de Pago (*)</label>
+                        <input type="date" class="form-control" id="fechaPago" name="fechaPago" [(ngModel)]="pago.fecha"
+                            required #fechaPago="ngModel" />
+                    </div>
+                    <div *ngIf="(fechaPago.invalid && (fechaPago.dirty || fechaPago.touched))"
+                        class="alert alert-danger">
+
+                        <div *ngIf="fechaPago.errors?.['required']">
+                            Fecha de Pago es requerido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="medioPago" class="form-label">Medio de Pago (*)</label>
+                        <select class="form-select" name="medioPago" id='medioPago' [(ngModel)]="pago.medioPago"
+                            required #medioPago="ngModel">
+                            <option value="efectivo">Efectivo</option>
+                            <option value="transferencia">Transferencia</option>
+                            <option value="debito">Debito</option>
+                            <option value="credito">Crédito</option>
+                            <option value="qr">QR</option>
+                        </select>
+                    </div>
+                    <div *ngIf="(medioPago.invalid && (medioPago.dirty || medioPago.touched))"
+                        class="alert alert-danger">
+                        <div *ngIf="medioPago.errors?.['required']">
+                            Medio de Pago es requerido.
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <button [disabled]="!pagoForm.form.valid" class="btn btn-primary"
+                        (click)="pagarPlan()">Registrar</button>
+
+                </form>
+            </div>
+            <div class="col-6 d-none d-lg-block image-container">
+                <img src="../../../assets/images/ketbell.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p class="fs-3">TOTAL DE PAGOS</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="d-none d-md-table-cell">#</th>
+                <th scope="col">Fecha de Pago</th>
+                <th scope="col" class="d-none d-md-table-cell">Medio de Pago</th>
+                <th scope="col">Total</th>
+                <th scope="col">Plan</th>
+                <th scope="col">Alumno</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of pagos, let i = index">
+                <th scope="row" class="d-none d-md-table-cell">{{i+1}}</th>
+                <td>{{p.fecha | date:'dd/MM/yyyy'}}</td>
+                <td class="d-none d-md-table-cell">{{p.medioPago | titlecase}}</td>
+                <td>{{"$ " + p.total}}</td>
+                <td>{{p.plan.nombre }}</td>
+                <td>{{p.alumno.apellidos + ", " + p.alumno.nombres}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

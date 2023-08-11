@@ -1,0 +1,30 @@
+textarea{
+    width: 90%;
+    max-height: 8rem;
+}
+#img{
+    width: 90%;
+}
+.vistaprevia{
+    max-width: 40rem;
+    height: auto;
+}
+button{
+    margin-bottom: 3rem;
+}
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Color de fondo con transparencia */
+    z-index: 9999; /* Valor alto de z-index para que esté por encima de otros elementos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .loader {
+    /* Estilos del loader */
+  }

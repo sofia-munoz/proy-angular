@@ -1,0 +1,30 @@
+li a {
+    padding: 0;
+    margin: 0;
+}
+
+li span {
+    font-size: 0.8rem;
+}
+
+.table-container {
+    max-height: 25rem;
+    /* Cambia el valor según la altura máxima deseada */
+    overflow-y: auto;
+}
+#menu{
+    width: 4.5rem;
+    height: 100%;
+}
+@media (max-width: 575.98px) {
+    #menu{
+        width: 3rem;
+    }
+    svg{
+        height: 18px;
+        width: 18px;
+    }
+    .contenido{
+        padding-left: 1.2rem;
+    }
+}

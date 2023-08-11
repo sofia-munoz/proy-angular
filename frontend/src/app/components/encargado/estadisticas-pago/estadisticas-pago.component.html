@@ -1,0 +1,152 @@
+<div class="container-fluid" style="padding: 0;">
+  <div class="row">
+    <div class="col-1">
+      <div id="menu" class="d-flex flex-column flex-shrink-0 text-bg-dark">
+        <a [routerLink]="['../estadisticas']" class="d-block p-3 link-body-emphasis text-decoration-none text-center"
+          data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+          <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="gray"
+            class="bi bi-clipboard-data" viewBox="0 0 16 16">
+            <path
+              d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
+            <path
+              d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+            <path
+              d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+          </svg>
+        </a>
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+          <li class="nav-item">
+            <a [routerLink]="['../estadisticas-pago']" class="nav-link active py-3 border-bottom rounded-0"
+              aria-current="page" data-bs-toggle="tooltip" data-bs-placement="right">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-wallet2"
+                viewBox="0 0 16 16">
+                <path
+                  d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z" />
+              </svg>
+              <span class="d-none d-sm-block text-white">Pagos</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['../estadisticas-ingreso']" class="nav-link py-3 border-bottom rounded-0"
+              aria-current="page" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Home"
+              data-bs-original-title="Home">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-person-add"
+                viewBox="0 0 16 16">
+                <path
+                  d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+                <path
+                  d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z" />
+              </svg>
+              <span class="d-none d-sm-block text-white">Ingresos</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['../estadisticas-cuota']" class="nav-link py-3 border-bottom rounded-0"
+              aria-current="page" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Home"
+              data-bs-original-title="Home">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-cash-stack"
+                viewBox="0 0 16 16">
+                <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                <path
+                  d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
+              </svg>
+              <span class="d-none d-sm-block text-white">Cuotas</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['../estadisticas-insumo']" class="nav-link py-3 border-bottom rounded-0"
+              aria-current="page" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Home"
+              data-bs-original-title="Home">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-bag"
+                viewBox="0 0 16 16">
+                <path
+                  d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+              <span class="d-none d-sm-block text-white">Insumos</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-11 contenido">
+      <div class="container">
+        <p class="fs-3">TOTAL DE PAGOS</p>
+        <div>
+          <hr>
+          <h6>Filtros</h6>
+          <form action="">
+            <div class="row">
+              <div class="col-sm-4 col-md-5">
+                <div class="mb-3">
+                  <label for="fechadesde" class="form-label">Fecha desde</label>
+                  <input type="date" class="form-control" id="fechadesde" name="fechadesde" [(ngModel)]="fechaDesde"
+                    max="{{ fechaHoy }}" />
+                </div>
+              </div>
+              <div class="col-sm-4 col-md-5">
+                <div class="mb-3">
+                  <label for="fechahasta" class="form-label">Fecha hasta</label>
+                  <input type="date" class="form-control" id="fechahasta" name="fechahasta" [(ngModel)]="fechaHasta"
+                    max="{{ fechaHoy }}" />
+                </div>
+              </div>
+            </div>
+          </form>
+          <button type="button" class="btn btn-primary" (click)="filtrarPorFecha()"
+            [disabled]="!fechaDesde || !fechaHasta">Filtrar</button>
+          <button type="button" class="btn btn-primary" (click)="limpiarFiltros()">Borrar</button>
+          <hr>
+        </div>
+
+        <strong class="d-none d-sm-block"> Cantidad Total: {{pagos.length}}</strong>
+        <div class="table-container d-none d-sm-block">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Medio de Pago</th>
+                <th scope="col">Total</th>
+                <th scope="col" class="d-none d-md-table-cell">Plan</th>
+                <th scope="col" class="d-none d-md-table-cell">Alumno</th>
+                <th scope="col" class="d-none d-md-table-cell">Insumos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of pagos, let i = index">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{p.fecha}}</td>
+                <td>{{p.plan != null ? "Plan":"Insumo"}}</td>
+                <td>{{p.medioPago}}</td>
+                <td>{{"$ " + p.total}}</td>
+                <td class="d-none d-md-table-cell">{{p.plan != null ? p.plan.nombre : ""}}</td>
+                <td class="d-none d-md-table-cell">{{p.alumno != null ? p.alumno.apellidos + ", " + p.alumno.nombres :
+                  ""}}</td>
+                <td class="d-none d-md-table-cell">
+                  <ul>
+                    <li *ngFor="let i of p.insumos">{{i.nombre}}</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br>
+        <hr>
+        <p style="font-size: 1.2rem;"> Cantidad de pagos: <strong> {{ pagos.length }}</strong></p>
+        <p style="font-size: 1.2rem;"> Total recaudado: <strong> $ {{ calcularTotalRecaudado() }}</strong></p>
+        <p style="font-size: 1.2rem;"> Monto promedio de pagos: <strong> $ {{calcularPromedio() | number: '2.2-2'}}</strong></p>
+        <p style="font-size: 1.2rem;">Medios de pagos:</p>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div id="chart_div"></div>
+        </div>
+        <p style="font-size: 1.2rem;">Comparación tipo de ingresos:</p>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div id="donutchart"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

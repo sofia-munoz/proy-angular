@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.imglogin{
+    width: 100%;
+}
+.login{
+    background-color: rgb(18,18,18);
+}
+.imglogo{
+    max-width: 12rem;
+    padding-top: 2rem;
+}
+.containerform{
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+#usuario,#password{
+    background-color: rgb(41,41,41);
+    color: white;
+}
+.form-label{
+    font-size: 1.1rem;
+    margin: 0.5rem;
+    color: rgb(134, 132, 132);
+}
+form div{
+    margin: 2rem;
+}
+.btn{
+    width: 10rem;
+    height: 2.5rem;
+    margin: 2rem;
+    font-weight: 700;
+}
+input{
+    padding-left: 1rem;
+}

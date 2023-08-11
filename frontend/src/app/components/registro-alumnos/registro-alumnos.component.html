@@ -1,0 +1,57 @@
+<div class="container">
+    <p class="fs-3">LISTADO DE ALUMNOS</p>
+    <button type="button" class="btn btn-primary boton" (click)="agregarAlumno()">Agregar</button>
+    <table class="table table-striped">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col" class="d-none d-md-table-cell">DNI</th>
+                    <th scope="col">Fecha de Inscripcion</th>
+                    <th scope="col" class="d-none d-md-table-cell">Usuario</th>
+                    <th scope="col">Acciones</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let alumno of alumnos, let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{alumno.apellidos}}</td>
+                    <td>{{alumno.nombres}}</td>
+                    <td class="d-none d-md-table-cell">{{alumno.dni}}</td>
+                    <td>{{alumno.fechaInscripcion | date:'dd/MM/yyyy'}}</td>
+                    <td *ngIf="alumno.user != null" class="d-none d-md-table-cell">Si</td>
+                    <td *ngIf="alumno.user == null" class="d-none d-md-table-cell">No</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm"
+                            (click)="modificarAlumno(alumno)">Modificar</button>
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" (click)="alumnoAEliminar = alumno">Eliminar</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </table>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminación de Alumno</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Seguro que desea eliminar el registro con id {{alumnoAEliminar._id}}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                    (click)="eliminarAlumno(alumnoAEliminar._id)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

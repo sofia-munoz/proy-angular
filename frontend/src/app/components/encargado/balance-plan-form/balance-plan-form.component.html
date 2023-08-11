@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <div class="container">
+        <p class="fs-3">GESTION DE PLANES</p>
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-6">
+                <form #planForm="ngForm">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre (*)</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="plan.nombre"
+                            required #nombre="ngModel" />
+                    </div>
+                    <div *ngIf="(nombre.invalid && (nombre.dirty || nombre.touched))" class="alert alert-danger">
+                        <div *ngIf="nombre.errors?.['required']">
+                            Nombres es requerido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción (*)</label>
+                        <input type="text" class="form-control" id="descripcion" name="descripcion"
+                            [(ngModel)]="plan.descripcion" required #descripcion="ngModel" />
+                    </div>
+                    <div *ngIf="(descripcion.invalid && (descripcion.dirty || descripcion.touched))"
+                        class="alert alert-danger">
+
+                        <div *ngIf="descripcion.errors?.['required']">
+                            Descripcion es requerido.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio (*)</label>
+                        <input type="number" class="form-control" id="precio" name="precio"
+                            [(ngModel)]="plan.precio" required #precio="ngModel" />
+                    </div>
+
+                    <div *ngIf="(precio.invalid && (precio.dirty || precio.touched)) || (precio.valid && precio.value<=0)"
+                        class="alert alert-danger">
+
+                        <div *ngIf="precio.errors?.['required']">
+                            Precio es requerido.
+                        </div>
+                        <div *ngIf="precio.value<=0">
+                            Precio debe ser mayor a 0.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dias" class="form-label">Días Disponibles (*)</label>
+                        <input type="number" class="form-control" id="dias" name="dias"
+                            [(ngModel)]="plan.diasDisponibles" required #dias="ngModel" />
+                    </div>
+
+                    <div *ngIf="(dias.invalid && (dias.dirty || dias.touched)) || (dias.valid && dias.value<=0)"
+                        class="alert alert-danger">
+
+                        <div *ngIf="precio.errors?.['required']">
+                            Días Disponibles es requerido.
+                        </div>
+                        <div *ngIf="precio.value<=0">
+                            Días Disponibles debe ser mayor a 0.
+                        </div>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="activo" name="activo" [(ngModel)]="activo">
+                        <label class="form-check-label" for="activo">Activo</label>
+                      </div>
+                      
+
+                    <button [disabled]="!planForm.form.valid" class="btn btn-primary" *ngIf="action=='new'"
+                        (click)="guardarPlan()">Registrar</button>
+                    <button class="btn btn-warning" *ngIf="action=='update'"
+                        (click)="modificarPlan()">Modificar</button>
+                    <button class="btn btn-primary boton" (click)="volverLista()">Volver</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

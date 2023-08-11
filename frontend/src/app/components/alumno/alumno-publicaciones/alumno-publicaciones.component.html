@@ -1,0 +1,47 @@
+<div class="bg-dark">
+<div class="container p-3">
+<form role="search" #fotosForm="ngForm">
+  <div class="row">
+  <div class="col-12 col-md-6 mt-4">
+    <input class="form-control p-3" type="text" placeholder="¿Que estas pensando? ..." required minlength="4" aria-label="Search" 
+    name="publicacion" [(ngModel)]="publicacion.descripcion" #descripcion="ngModel">
+    <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)"
+        class="alert alert-danger">
+        <div *ngIf="descripcion.errors?.['required']">
+          Descripcion es requerido.
+        </div>
+        <div *ngIf="descripcion.errors?.['minlength']">
+          Descripcion debe tener al menos 4 caracteres.
+      </div>
+     </div>
+  </div>
+  <div class="col-12 col-md-6 mt-4">
+    <input class="form-control p-3" type="text" placeholder="Ingresa link de foto aqui" aria-label="Search" name="img"
+     [(ngModel)]="publicacion.imagen" #foto="ngModel" required>
+    <div *ngIf="foto.invalid && (foto.dirty || foto.touched)"
+        class="alert alert-danger">
+        <div *ngIf="foto.errors?.['required']">
+         El link es requerido.
+        </div>
+     </div>
+  </div>
+  <div class="col-1 mt-2">
+    <button class="btn btn-outline-danger" type="submit" (click)="agregarPublicacion()" [disabled]="!fotosForm.form.valid">Publicar</button>
+  </div>
+   </div>
+  </form>
+<h4 class="text-end text-danger mb-4 mt-4">Total de publicaciones: {{totalPublicaciones}} </h4>
+</div>
+
+<div class="row d-flex justify-content-center m-0">
+  <div class="card text-bg-dark col-md-5 p-3 mb-5 m-2"  *ngFor="let publicacion of publicaciones">
+    <p class="card-text">{{publicacion.fecha | date: 'dd/MM/yyyy hh:mm'}}</p>
+
+    <img src="{{publicacion.imagen}}" class="card-img-top p-3" alt="" height="400px">  <div class="card-body">
+
+      <h5 class="card-title p-3 text-center ">{{publicacion.descripcion}}</h5>
+
+    </div>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    color: black;
+}
+
+.navbar-toggler {
+    background-color: rgb(128, 128, 128);
+    opacity: 75%;
+}
+
+.btnpagar {
+    min-width: 15rem;
+    margin-bottom: 0.5rem;
+}
+
+#bin {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+#btnAgregar {
+    margin: 2rem 1rem
+}
+.tarjetas{
+    margin-bottom: 1rem;
+}
+img{
+    max-height: 17rem;
+    object-fit: contain;
+}
+.imgcontainer svg{
+    position: absolute;
+    right: 0.8rem;
+    top: 0.8rem;
+}

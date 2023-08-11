@@ -1,0 +1,180 @@
+<div class="container">
+  <h1 class="text-center mb-4">Editar Datos Personales</h1>
+  <!--  AGREGO NOMBRE AL <FORM> Y LE INDICO QUE UN FORMULARIO DE ANGULAR-->
+  <!--  CON ESTO SE CREA UNA VARIABLE DE REFERENCIA DE PLANTILLA-->
+  <form #alumnoForm="ngForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="nombres" class="form-label">Nombres</label>
+          <input type="text" class="form-control" id="nombres" [(ngModel)]="alumno.nombres" name="nombres"
+                 placeholder="Ingrese sus nombres" required minlength="4" #nombre="ngModel" caracter-especial
+                 pattern="^[a-zA-Z\s]+$">
+          <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="error-message">
+            <div *ngIf="nombre.errors?.['required']" class="error-text"> El nombre es requerido.</div>
+            <div *ngIf="nombre.errors?.['minlength']" class="error-text"> El nombre debe tener al menos 4 caracteres.
+            </div>
+            <div *ngIf="nombre.errors?.['caracterEspecial']" class="error-text"> No se permiten caracteres especiales.
+            </div>
+            <div *ngIf="nombre.errors?.['pattern']" class="error-text">Ingrese un nombre válido.</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="apellidos" class="form-label">Apellidos</label>
+          <input type="text" class="form-control" id="apellidos" [(ngModel)]="alumno.apellidos" name="apellidos"
+                 placeholder="Ingrese sus apellidos" required minlength="4" #apellido="ngModel" caracter-especial
+                 pattern="^[a-zA-Z\s]+$">
+          <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)" class="error-message">
+            <div *ngIf="apellido.errors?.['required']" class="error-text"> El apellido es requerido.</div>
+            <div *ngIf="apellido.errors?.['minlength']" class="error-text"> El apellido debe tener al menos 4
+              caracteres.
+            </div>
+            <div *ngIf="apellido.errors?.['caracterEspecial']" class="error-text"> No se permiten caracteres
+              especiales.
+            </div>
+            <div *ngIf="apellido.errors?.['pattern']" class="error-text">Ingrese un apellido válido.</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="dni" class="form-label">DNI</label>
+          <input type="text" class="form-control" id="dni" [(ngModel)]="alumno.dni" name="dni"
+                 placeholder="Ingrese su DNI" required minlength="8" maxlength="8" #dni="ngModel" solo-numeros
+                 caracter-especial>
+
+          <div *ngIf="dni.invalid && (dni.dirty || dni.touched)" class="error-message">
+            <div *ngIf="dni.errors?.['required']" class="error-text"> El dni es requerido.</div>
+            <div *ngIf="dni.errors?.['minlength']" class="error-text"> El dni debe tener 8 numeros.</div>
+            <div *ngIf="dni.errors?.['caracterEspecial']" class="error-text"> No se permiten caracteres especiales.
+            </div>
+            <div *ngIf="dni.errors?.['soloNumeros']" class="error-text"> No se permiten letras.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+            <input id="fechaNacimiento" name="fechaNacimiento"
+                   class="form-control"
+                   required type="date" [(ngModel)]="alumno.fechaNacimiento" #fNacimiento="ngModel" fecha-nacimiento>
+            <div *ngIf="fNacimiento.invalid && (fNacimiento.dirty || fNacimiento.touched)" class="error-message">
+              <div *ngIf="fNacimiento.errors?.['required']" class="error-text">La fecha de nacimiento es requerida.
+              </div>
+              <div *ngIf="fNacimiento.errors?.['fechaInvalida']" class="error-text">La fecha de nacimiento debe ser
+                menor a la fecha actual.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="celular" class="form-label">Celular</label>
+          <input type="text" class="form-control" id="celular" [(ngModel)]="alumno.celular" name="celular"
+                 placeholder="Ingrese su número de celular" minlength="10" maxlength="10" #celular="ngModel"
+                 solo-numeros caracter-especial>
+
+          <div *ngIf="celular.invalid && (celular.dirty || celular.touched)" class="error-message">
+            <!--            PUEDE O NO SER REQUERIDO-->
+            <!--            <div *ngIf="celular.errors?.['required']" class="error-text"> El celular es requerido.</div>-->
+            <div *ngIf="celular.errors?.['minlength']" class="error-text"> El celular debe tener 10 numeros.</div>
+            <div *ngIf="celular.errors?.['caracterEspecial']" class="error-text"> No se permiten caracteres
+              especiales.
+            </div>
+            <div *ngIf="celular.errors?.['soloNumeros']" class="error-text"> No se permiten letras.</div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="domicilio" class="form-label">Domicilio</label>
+          <input type="text" class="form-control" id="domicilio" [(ngModel)]="alumno.domicilio" name="domicilio"
+                 placeholder="Ingrese su domicilio" minlength="10" maxlength="15" required #domicilio="ngModel">
+          <div *ngIf="domicilio.invalid && (domicilio.dirty || domicilio.touched)" class="error-message">
+            <div *ngIf="domicilio.errors?.['required']" class="error-text"> El domicilio es requerido.</div>
+            <div *ngIf="domicilio.errors?.['minlength']" class="error-text">Agregar mas informacion para el domicilio.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" [(ngModel)]="alumno.email" name="email"
+                 placeholder="Ingrese su correo electrónico" [email]="true" required #email="ngModel">
+
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+            <div *ngIf="email.errors?.['required']" class="error-text">El correo electrónico es requerido.</div>
+            <div *ngIf="email.errors?.['email']" class="error-text">El correo electrónico debe tener un formato
+              válido.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="foto" class="form-label">Foto de perfil</label>
+          <input type="text" class="form-control" id="foto" [(ngModel)]="alumno.fotoPerfil" name="foto"
+                 placeholder="Ingrese su foto de perfil">
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="text-center">
+      <button type="button" class="btn btn-primary m-2" [routerLink]="'/alumno-perfil'">
+        Volver
+      </button>
+
+
+      <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+              [disabled]="alumnoForm.invalid">
+        Actualizar los datos
+      </button>
+    </div>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirmar cambios</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ¿Estás seguro de que queres guardar los cambios?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="actualizarDatosAlumno()" data-bs-dismiss="modal">
+              Guardar cambios
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

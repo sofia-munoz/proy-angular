@@ -1,0 +1,296 @@
+<div class="container">
+  <!-- TITULO GENERAL -->
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mt-5 p-3 display-2">FORMULARIO DE RUTINA</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 text-end">
+      <button type="submit" class="btn btn-success" (click)="mostrarHistorialClick()" *ngIf="rutinas.length > 0">
+        ¿Quieres asignarle una rutina que ya creaste?
+      </button>
+
+      <div class="list-group text-center" *ngIf="mostrarHistorial">
+        <h1 class="mt-5 p-3 display-2">MIRA TU HISTORIAL</h1>
+        <button type="button" class="mt-3 list-group-item list-group-item-action" *ngFor="let rutina of rutinas">
+          <div class="rutina-item">
+            {{rutina.nombre}} - {{rutina.objetivo}}
+          </div>
+          <div class="ejercicios-wrapper">
+            <div class="list-group" *ngFor="let ejercicio of rutina.ejercicios">
+              <div class="ejercicio-item">
+                {{ejercicio.nombre}} - {{ejercicio.descripcion}}
+              </div>
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!mostrarHistorial">
+    <form class="mb-5 p-2">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="rutina.nombre" name="nombre" required>
+      </div>
+
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea class="form-control" id="descripcion" [(ngModel)]="rutina.descripcion" name="descripcion"
+                  required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="nivelDificultad">Nivel de Dificultad</label>
+        <select class="form-control" id="nivelDificultad" [(ngModel)]="rutina.nivelDificultad" name="nivelDificultad"
+                required>
+          <option value="principiante">Principiante</option>
+          <option value="intermedio">Intermedio</option>
+          <option value="avanzado">Avanzado</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="objetivo">Objetivo</label>
+        <input type="text" class="form-control" id="objetivo" [(ngModel)]="rutina.objetivo" name="objetivo" required>
+      </div>
+
+      <div class="form-group">
+        <label for="tipoEntrenamiento">Tipo de Entrenamiento</label>
+        <input type="text" class="form-control" id="tipoEntrenamiento" [(ngModel)]="rutina.tipoEntrenamiento"
+               name="tipoEntrenamiento" required>
+      </div>
+
+      <div class="form-group">
+        <label for="fechaCreacion">Fecha de Creación</label>
+        <input type="date" class="form-control" id="fechaCreacion" [(ngModel)]="rutina.fechaCreacion"
+               name="fechaCreacion"
+               required>
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+        <div>
+          <span class="text-center display-4">Seccion de ejercicios</span>
+        </div>
+        <div>
+
+          <!--        MODAL PARA AGREGAR EJERCICIO-->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Agregar
+            ejercicio
+          </button>
+          <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel"
+               aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Formulario de ejercicio</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="mb-3">
+                      <label for="nombreEjercicio" class="form-label">Nombre</label>
+                      <input type="text" class="form-control" id="nombreEjercicio" [(ngModel)]="ejercicioNuevo.nombre"
+                             name="nombreEjercicio" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="descripcionEjercicio" class="form-label">Descripción</label>
+                      <textarea class="form-control" id="descripcionEjercicio" [(ngModel)]="ejercicioNuevo.descripcion"
+                                name="descripcionEjercicio" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="musculoTrabajado" class="form-label">Músculo Trabajado</label>
+                      <input type="text" class="form-control" id="musculoTrabajado"
+                             [(ngModel)]="ejercicioNuevo.musculoTrabajado" name="musculoTrabajado" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="nivelRequerido" class="form-label">Nivel Requerido</label>
+                      <input type="text" class="form-control" id="nivelRequerido"
+                             [(ngModel)]="ejercicioNuevo.nivelRequerido"
+                             name="nivelRequerido" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="nivelDificultadEjercicio" class="form-label">Nivel de Dificultad</label>
+                      <input type="text" class="form-control" id="nivelDificultadEjercicio"
+                             [(ngModel)]="ejercicioNuevo.nivelDificultad" name="nivelDificultadEjercicio" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="repeticiones" class="form-label">Repeticiones</label>
+                      <input type="text" class="form-control" id="repeticiones"
+                             [(ngModel)]="ejercicioNuevo.repeticiones"
+                             name="repeticiones" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="imagen" class="form-label">Imagen</label>
+                      <input type="text" class="form-control" id="imagen" [(ngModel)]="ejercicioNuevo.imagen"
+                             name="imagen"
+                             required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="video" class="form-label">Video</label>
+                      <input type="text" class="form-control" id="video" [(ngModel)]="ejercicioNuevo.video" name="video"
+                             required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="series" class="form-label">Series</label>
+                      <input type="text" class="form-control" id="series" [(ngModel)]="ejercicioNuevo.series"
+                             name="series"
+                             required>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary" (click)="agregarEjercicio(ejercicioNuevo)"
+                          data-bs-dismiss="modal">Agregar ejercicio
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!--TABLA DE EJERCICIOS PARA LA RUTINA-->
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="thead-dark">
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Musculo trabajado</th>
+                <th scope="col">Nivel requerido</th>
+                <th scope="col">Repeticiones</th>
+                <th scope="col">Series</th>
+                <th scope="col">Video Auxiliar</th>
+                <th scope="col">Operaciones</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr *ngFor="let ejercicio of ejercicios">
+                <td>{{ ejercicio.nombre }} </td>
+                <td>{{ ejercicio.descripcion }}</td>
+                <td>{{ ejercicio.musculoTrabajado }}</td>
+                <td>{{ ejercicio.nivelRequerido }}</td>
+                <td>{{ ejercicio.repeticiones }}</td>
+                <td>{{ ejercicio.series }}</td>
+                <td>{{ ejercicio.video }}</td>
+                <td>
+                  <!--                 MODAL PARA EDITAR-->
+                  <button type="button" class="btn btn-danger btn-block" (click)="eliminarEjercicio(ejercicio)">Eliminar
+                    ejercicio
+                  </button>
+                  <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal"
+                          data-bs-target="#staticBackdropEditar" (click)="asignarEjercicioSeleccionado(ejercicio)">
+                    Editar
+                    ejercicio
+                  </button>
+                  <div class="modal fade" id="staticBackdropEditar" tabindex="-1"
+                       aria-labelledby="staticBackdropLabelEditar"
+                       aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="staticBackdropLabelEditar">Formulario de ejercicio</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="mb-3">
+                              <label for="nombreEjercicioE" class="form-label">Nombre</label>
+                              <input type="text" class="form-control" id="nombreEjercicioE"
+                                     [(ngModel)]="ejercicioSeleccionado.nombre"
+                                     name="nombreEjercicioE" required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="descripcionEjercicioE" class="form-label">Descripción</label>
+                              <textarea class="form-control" id="descripcionEjercicioE"
+                                        [(ngModel)]="ejercicioSeleccionado.descripcion"
+                                        name="descripcionEjercicioE" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                              <label for="musculoTrabajadoE" class="form-label">Músculo Trabajado</label>
+                              <input type="text" class="form-control" id="musculoTrabajadoE"
+                                     [(ngModel)]="ejercicioSeleccionado.musculoTrabajado" name="musculoTrabajado"
+                                     required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="nivelRequeridoE" class="form-label">Nivel Requerido</label>
+                              <input type="text" class="form-control" id="nivelRequeridoE"
+                                     [(ngModel)]="ejercicioSeleccionado.nivelRequerido"
+                                     name="nivelRequeridoE" required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="nivelDificultadEjercicioE" class="form-label">Nivel de Dificultad</label>
+                              <input type="text" class="form-control" id="nivelDificultadEjercicioE"
+                                     [(ngModel)]="ejercicioSeleccionado.nivelDificultad"
+                                     name="nivelDificultadEjercicioE"
+                                     required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="repeticionesE" class="form-label">Repeticiones</label>
+                              <input type="text" class="form-control" id="repeticionesE"
+                                     [(ngModel)]="ejercicioSeleccionado.repeticiones"
+                                     name="repeticionesE" required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="imagenE" class="form-label">Imagen</label>
+                              <input type="text" class="form-control" id="imagenE"
+                                     [(ngModel)]="ejercicioSeleccionado.imagen"
+                                     name="imagenE"
+                                     required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="videoE" class="form-label">Video</label>
+                              <input type="text" class="form-control" id="videoE"
+                                     [(ngModel)]="ejercicioSeleccionado.video"
+                                     name="videoE"
+                                     required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="seriesE" class="form-label">Series</label>
+                              <input type="text" class="form-control" id="seriesE"
+                                     [(ngModel)]="ejercicioSeleccionado.series"
+                                     name="seriesE"
+                                     required>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                  (click)="cancelarEdicion()">Cancelar
+                          </button>
+                          <button type="button" class="btn btn-primary" (click)="editarEjercicio(ejercicioSeleccionado)"
+                                  data-bs-dismiss="modal">Actualizar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+      <hr>
+
+      <div class="form-group m-3 d-grid gap-2">
+        <button type="submit" class="btn btn-primary btn-block" (click)="asignarRutina(rutina)">Asignar rutina</button>
+        <button type="submit" class="btn btn-outline-primary btn-block mt-2"
+                [routerLink]="['/entrenador-generar-rutina']">Volver
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+<div class="container-fluid">
+    <div class="container">
+        <p class="fs-3">GESTION DE ANUNCIOS</p>
+        <p class="fs-3">FACEBOOK</p>
+        <a class="urlface" href="https://www.facebook.com/profile.php?id=100094572633926" target="_blank">Página de facebook</a>
+        <div class="row" style="margin-top: 2rem;">
+            <div class="col-sm-12 col-md-8 col-lg-6">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                            aria-selected="true">Sin imagen</button>
+                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                            type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Con
+                            imagen</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+                        tabindex="0">
+
+                        <form #anuncioForm="ngForm">
+                            <div class="mb-3">
+                                <label for="mensaje" class="form-label">Mensaje (*)</label>
+                                <textarea name="mensaje" id="mensaje" cols="30" rows="10" [(ngModel)]="message" required
+                                    #mensaje="ngModel"></textarea>
+                            </div>
+                            <div *ngIf="(mensaje.invalid && (mensaje.dirty || mensaje.touched))"
+                                class="alert alert-danger">
+                                <div *ngIf="mensaje.errors?.['required']">
+                                    Mensaje es requerido.
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" [disabled]="!anuncioForm.form.valid"
+                                (click)="publicar()">Publicar</button>
+                        </form>
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+                        tabindex="0">
+                        <form #anuncioImgForm="ngForm">
+                            <div class="mb-3">
+                                <label for="mensaje" class="form-label">Mensaje</label><br>
+                                <textarea name="mensaje" id="mensaje" cols="30" rows="10"
+                                    [(ngModel)]="message"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="img" class="form-label">Url Imagen</label><br>
+                                <input name="img" id="img" cols="30" rows="10" [(ngModel)]="imagenUrl" required
+                                    #img="ngModel">
+                            </div>
+                            <div *ngIf="(img.invalid && (img.dirty || img.touched))" class="alert alert-danger">
+                                <div *ngIf="img.errors?.['required']">
+                                    Imagen es requerida.
+                                </div>
+                            </div>
+                            <div *ngIf="imagenUrl">
+                                <label>Vista previa:</label><br>
+                                <img class="vistaprevia" [src]="imagenUrl" alt="Vista previa de la imagen">
+                            </div>
+                            <button class="btn btn-primary" [disabled]="!anuncioImgForm.form.valid"
+                                (click)="publicarConImg()">Publicar</button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loader-overlay" *ngIf="mostrarLoader">
+        <div class="loader"><img *ngIf="mostrarLoader" src="../../../assets/animate/svg-loaders/oval.svg" alt="" class="loader"></div>
+      </div>
+    <div class="container-fluid">
+        <div class="container">
+            <p class="fs-3">ANUNCIOS YA PUBLICADOS</p>
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col" class="d-none d-md-table-cell">#</th>
+                    <th scope="col">Fecha de Creación</th>
+                    <th scope="col" class="d-none d-sm-table-cell">Mensaje</th>
+                    <th scope="col" class="d-none d-sm-table-cell">Story</th>
+                    <th scope="col" class="d-sm-none">Mensaje o Story</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let a of anuncios; let i = index">
+                    <th scope="row" class="d-none d-md-table-cell">{{i + 1}}</th>
+                    <td>{{a.created_time | date:'dd/MM/yyyy HH:mm'}}</td>
+                    <td class="d-none d-sm-table-cell">{{a.message}}</td>
+                    <td class="d-none d-sm-table-cell">{{a.story}}</td>
+                    <td class="d-sm-none">{{a.message || a.story}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>

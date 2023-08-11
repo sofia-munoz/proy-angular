@@ -1,0 +1,63 @@
+<header class="p-3 text-bg-dark">
+  <div class="container-fluid header">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none d-none d-sm-flex">
+        <img class="logo" src="../../../../assets/images/logo-white.png" style="height: 4rem" />
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="#" class="nav-link px-2 text-white">Home</a></li>
+        <li><a [routerLink]="['plan']" class="nav-link px-2 text-white">Planes</a></li>
+        <li><a [routerLink]="['instalaciones']" class="nav-link px-2 text-white">Instalaciones</a></li>
+        <li><a [routerLink]="['contacto']" class="nav-link px-2 text-white">Contacto</a></li>
+
+      </ul>
+
+      <div class="text-end">
+        <button type="button" class="btn btn-outline-light me-2" *ngIf="!loginService.userLoggedIn()" [routerLink]="['login']">
+          Login
+        </button>
+        
+
+        <div class="dropdown" *ngIf="loginService.userLoggedIn()">
+          <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+           {{loginService.userLogged()}}
+          </button>
+          <!--          OPCIONES DISPONIBLES PARA ROL ALUMNO-->
+          <ul class="dropdown-menu dropdown-menu-dark" *ngIf="loginService.userRolLogged() == 'ALUMNO'">
+            <li><a class="dropdown-item active" [routerLink]="['alumno-perfil']">Ir a mi perfil</a></li>
+            <li><a class="dropdown-item" [routerLink]="['alumno-asistencias']">Ver mis asistencias</a></li>
+            <li><a class="dropdown-item" [routerLink]="['alumno-rutinas']">Ver mis rutinas</a></li>
+            <li><a class="dropdown-item" [routerLink]="['alumno-pagos']">Ver mis pagos</a></li>
+            <li><a class="dropdown-item" [routerLink]="['alumno-publicaciones']">Ver mis fotos</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" [routerLink]="['login']" (click)="logout()">Logout</a></li>
+          </ul>
+          <ul class="dropdown-menu dropdown-menu-dark" *ngIf="loginService.userRolLogged() == 'ENTRENADOR'">
+<!--            <li><a class="dropdown-item active" [routerLink]="['perfil']">Perfil</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Ver alumnos</a></li>-->
+            <li><a class="dropdown-item" [routerLink]="['entrenador-generar-rutina']">Generar rutinas</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" [routerLink]="['login']" (click)="logout()">Logout</a></li>
+          </ul>
+          <ul class="dropdown-menu dropdown-menu-dark" *ngIf="loginService.userRolLogged() == 'ENCARGADO'">
+            <li><a class="dropdown-item" [routerLink]="['estadisticas']">Estadisticas</a></li>
+            <li><a class="dropdown-item" href="balancePlanes">Balances Planes</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" [routerLink]="['login']" (click)="logout()">Logout</a></li>
+          </ul>
+          <ul class="dropdown-menu dropdown-menu-dark" *ngIf="loginService.userRolLogged() == 'ADMINISTRATIVO'">
+            <li><a class="dropdown-item" [routerLink]="['registroAlumnos']">Registro alumnos</a></li>
+            <li><a class="dropdown-item" [routerLink]="['pago']">Pagos</a></li>
+            <li><a class="dropdown-item" [routerLink]="['anuncios']">Anuncios</a></li>
+            <li><a class="dropdown-item" [routerLink]="['insumos']">Insumos</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" [routerLink]="['login']" (click)="logout()">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

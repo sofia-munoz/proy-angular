@@ -1,0 +1,86 @@
+<div class="container-fluid">
+   <div class="container m-auto">
+      <div class="generar-rutina-container row">
+         <div class="crear-rutina col-6">
+            <div class="form-rutina">
+               <form class="form">
+                  <div class="mb-3">
+                     <h2>Crear Rutina</h2>
+                  </div>
+                  <div class="mb-3">
+                     <label for="nombre" class="form-label">Nombre: </label>
+                     <input [(ngModel)]="rutina.nombre" type="text" class="form-control" id="nombre" name="nombre"
+                        placeholder="ej. rutina para hombros y brazos">
+                  </div>
+                  <div class="mb-3">
+                     <label for="descripcion" class="form-label">Descripcion</label>
+                     <input [(ngModel)]="rutina.descripcion" type="text" class="form-control" id="descripcion" name="descripcion">
+                  </div>
+                  <div class="mb-3">
+                     <label for="nivelDificultad">Nivel del Alumno: </label>
+                     <select [(ngModel)]="rutina.nivelDificultad" id="nivelDificultad" name="nivelDificultad" class="form-select">
+                        <option value="">Seleccione una opción</option>
+                        <option value="principiante">Principiante</option>
+                        <option value="internmedio">Intermedio</option>
+                        <option value="avanzado">Avanzado</option>
+                     </select>
+                  </div>
+                  <div class="mb-3">
+                     <label for="objetivo" class="form-label">Objetivo: </label>
+                     <input [(ngModel)]="rutina.objetivo" type="text" class="form-control" id="objetivo" name="objetivo"
+                        placeholder="describir el objetivo">
+                  </div>
+                  <div class="mb-3">
+                     <label for="tipoEntrenamiento" class="form-label">Tipo de Entrenamiento: </label>
+                     <input [(ngModel)]="rutina.tipoEntrenamiento" type="text" class="form-control" id="tipoEntrenamiento" name="tipoEntrenamiento"
+                        placeholder="Ej. tren superior">
+                  </div>
+                  <div class="mb-3">
+                     <label for="fechaCreacion" class="form-label">Fecha creacion de rutina: </label>
+                     <input [(ngModel)]="rutina.fechaCreacion" type="date" class="form-control" id="fechaCreacion" name="fechaCreacion">
+                  </div>
+                  <div class="mb-3">
+                     <label for="ejercicios" class="form-label">Ejercicios: </label>
+                     <select [(ngModel)]="ejercicioId" (ngModelChange)="mostrarDescEjercicio(ejercicioId)"
+                        id="ejercicios" name="ejercicios" class="form-select">
+                        <option value="na">Seleccione ejercicios</option>
+                        <option *ngFor="let ej of ejerciciosList" [value]="ej._id">{{ ej.nombre }}</option>
+                     </select>
+                  </div>
+                  <!-- <div class="mb-3">
+                     <label for="entrenador" class="form-label">Entrenador: </label>
+                     <select [(ngModel)]="rutina.entrenador" id="entrenador" name="entrenador" class="form-select">
+                        <option value="">Seleccione una Entrenador</option>
+                        <option *ngFor="let en of entrenadoresList" value="{{en._id}}">{{en.nombres}}, {{en.apellidos}}
+                        </option>
+                     </select>
+                  </div> -->
+                  <div class="mb-4">
+                     <label for="alumno" class="form-label">Alumno: </label>
+                     <select [(ngModel)]="alumnoId" id="alumno" name="alumno" class="form-select">
+                        <option value="">Seleccione un alumno</option>
+                        <option *ngFor="let a of alumnosList" value="{{a._id}}">{{a.nombres}}, {{a.apellidos}}
+                        </option>
+                     </select>
+                  </div>
+                  <!-- <div class="mb-3 form-check">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                     <label class="form-check-label" for="exampleCheck1">Asistencia</label>
+                  </div> -->
+                  <button (click)="agregarRutinaAlumno()" type="submit" class="btn btn-light">Crear Rutina</button>
+               </form>
+               <p>ejercicio: {{ejercicio._id}}</p>
+            </div>
+         </div>
+         <div class="ejercicio-descripcion col-6">
+            <div *ngIf="mostrarEjercicio" class="ejercicio-container">
+                  <h4 class="card-text">{{ejer.nombre}}</h4>
+                  <p class="card-text">Descripcion: {{ejer.descripcion}}</p>
+                  <p class="card-text">Musculo trabajado: {{ejer.musculoTrabajado}}</p>
+                  <p class="card-text">Nivel: {{ejer.nivelRequerido}}</p>
+                  <p class="card-text">Repeticiones: {{ejer.repeticiones}}</p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

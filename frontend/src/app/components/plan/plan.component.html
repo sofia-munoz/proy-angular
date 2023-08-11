@@ -1,0 +1,32 @@
+<img class="portada" src="./../../../assets/images/empiezahoy.png" alt="">
+<div class="container-fluid contplanes">
+    <div class="container text-center titulo">
+        <h1>SUSCRIPCIONES</h1>
+        <h4>Elige el plan que más te guste y entrena con nosotros</h4>
+    </div>
+    <div class="container cards">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 text-center">
+            <div class="col" *ngFor="let p of planes">
+                <div class="card mb-4 rounded-3 shadow-sm text-white">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">{{p.nombre | uppercase}}</h4>
+                    </div>
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h1 class="card-title pricing-card-title">$ {{p.precio}}<small> / mes</small></h1>
+                            <ul class="mt-3 mb-4" style="text-align: left;">
+                                <li *ngFor="let d of p.descripcion">{{d}}</li>
+                            </ul>
+                        </div>
+                        <button class="align-self-end" type="button" class="w-100 btn btn-lg btn-light">¡COMIENZA
+                            AHORA!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<video class="d-block w-100" autoplay loop muted style="opacity: 95%" id="myvideo">
+    <source src="../../../assets/videos/promoinscgratis.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video>

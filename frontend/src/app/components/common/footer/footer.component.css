@@ -1,0 +1,17 @@
+.container-fluid{
+    background-image: url(src/assets/images/footerbackground.jpg);
+}
+footer{
+    margin: 0;
+    padding: 0;
+}
+.socialMedia{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+}
+.socialMedia li{
+    margin-bottom: 2rem;
+    margin-right: 1rem;
+}

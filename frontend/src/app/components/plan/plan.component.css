@@ -1,0 +1,47 @@
+.portada {
+    width: 100%;
+    opacity: 95%;
+}
+
+.contplanes {
+    background-color: black;
+}
+
+.container {
+    padding-top: 3rem;
+}
+.cards{
+    padding-bottom: 3rem;
+}
+.card {
+    background-color: rgb(33, 33, 33);
+    border: solid;
+    border-width: 1px;
+    border-color: white;
+    opacity: 80%;
+    height: 30rem;
+}
+
+.card-header {
+    background-color: rgb(52, 52, 52);
+}
+
+.titulo h1 {
+    color: brown;
+    font-size: 3rem;
+}
+
+.titulo h4 {
+    color: rgb(191, 190, 190);
+}
+
+.card:hover {
+    background-color: rgb(50, 50, 50);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-header {
+    background-color: #d75b5b;
+    transition: background-color 0.3s ease;
+  }
