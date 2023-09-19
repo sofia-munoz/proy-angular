@@ -31,7 +31,17 @@ Edita el archivo database.js y establece la URI de conexión a la base de datos 
 
   El servidor se ejecutará en el puerto especificado o en el puerto 3000 por defecto.
 
-  ## Estructura del Proyecto
+ ## Estructura del Proyecto
 - **index.js**: Archivo principal que configura y ejecuta la aplicación Express.
 - **database.js**: Configuración y conexión a la base de datos MongoDB.
 - **routers/**: Directorio que contiene los archivos de enrutamiento para cada recurso (usuario, alumno, plan, administrativo, entrenador, pago, encargado).
+
+## Tecnologías Utilizadas
+- **Express.js**: Framework para Node.js que permite crear aplicaciones web y APIs de manera sencilla y rápida.
+- **Cors**: Middleware para Express que habilita el control de acceso HTTP.
+- **Mongoose**: ODM (Object Document Mapper) para MongoDB, facilita la interacción con la base de datos.
+- **Bcrypt**: Librería para el hashing seguro de contraseñas.
+- **JsonWebToken**: Implementación de JSON Web Tokens para autenticación.
+   **MercadoPago**: SDK para integrar pagos con MercadoPago.
+- **Nodemailer**: Librería para enviar correos electrónicos desde Node.js.
+
